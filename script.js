@@ -35,3 +35,8 @@ function addToCart(e) {
     cartCont.innerHTML = "Продолжить покупки...";
   }, 1000);
 }
+
+// Обработчик события на каждую кнопку "Добавить в корзину"
+for (let i = 0; i < itemBox.length; i++) {
+  itemBox[i].querySelector(".add_item").addEventListener("click", addToCart);
+}
