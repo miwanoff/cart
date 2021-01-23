@@ -60,6 +60,12 @@ function openCart(e) {
   }
 }
 
+// Функция очистки корзины
+function clearCart(e) {
+  localStorage.removeItem("cart");
+  cartCont.innerHTML = "Корзина очишена.";
+}
+
 // Обработчик события на каждую кнопку "Добавить в корзину"
 for (let i = 0; i < itemBox.length; i++) {
   itemBox[i].querySelector(".add_item").addEventListener("click", addToCart);
@@ -67,3 +73,6 @@ for (let i = 0; i < itemBox.length; i++) {
 
 // Обработчик события на кнопку Открыть корзину
 document.getElementById("checkout").addEventListener("click", openCart);
+
+// Обработчик события на кнопку Очистить корзину
+document.getElementById("clear_cart").addEventListener("click", clearCart);
