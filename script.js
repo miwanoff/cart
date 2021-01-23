@@ -13,6 +13,18 @@ function count() {
   return count;
 }
 
+function sum() {
+  let sum = 0;
+  if (getCartData()) {
+    let cartData = getCartData();
+    console.log(cartData);
+    for (const key in cartData) {
+      sum += cartData[key][1] * cartData[key][2];
+    }
+  }
+  return sum;
+}
+
 // Записываем данные в LocalStorage
 function setCartData(o) {
   localStorage.setItem("cart", JSON.stringify(o));
@@ -63,7 +75,7 @@ function basketGenerate() {
       }
       cardTable += "</tr>";
     }
-    cardTable += `<tr><td>Итого</td><td></td><td>${count()}</td></tr>`;
+    cardTable += `<tr><td>Итого</td><td>${sum()}</td><td>${count()}</td></tr>`;
     cardTable += "<table>";
     return cardTable;
   } else {
