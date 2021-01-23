@@ -48,8 +48,7 @@ function addToCart(e) {
   }, 1000);
 }
 
-// Генериурем корзину со списком добавленных товаров
-function openCart(e) {
+function basketGenerate() {
   let cartData = getCartData(); // вытаскиваем все данные корзины
   console.log(JSON.stringify(cartData));
   // если что-то в корзине уже есть, формируем таблицу
@@ -64,12 +63,17 @@ function openCart(e) {
       }
       cardTable += "</tr>";
     }
+    cardTable += `<tr><td>Итого</td><td></td><td>${count()}</td></tr>`;
     cardTable += "<table>";
-    cartCont.innerHTML = cardTable;
+    return cardTable;
   } else {
     // если в корзине пусто, то сигнализируем об этом
-    cartCont.innerHTML = "В корзине пусто!";
+    return "В корзине пусто!";
   }
+}
+// Генериурем корзину со списком добавленных товаров
+function openCart(e) {
+  cartCont.innerHTML = basketGenerate();
 }
 
 // Функция очистки корзины
