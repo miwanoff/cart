@@ -1,6 +1,18 @@
 let itemBox = document.querySelectorAll(".item_box"); // блок каждого товара
 let cartCont = document.getElementById("cart_content"); // блок вывода данных корзины
 
+function count() {
+  let count = 0;
+  if (getCartData()) {
+    let cartData = getCartData();
+    console.log(cartData);
+    for (const key in cartData) {
+      count += cartData[key][2];
+    }
+  }
+  return count;
+}
+
 // Записываем данные в LocalStorage
 function setCartData(o) {
   localStorage.setItem("cart", JSON.stringify(o));
