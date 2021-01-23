@@ -36,7 +36,34 @@ function addToCart(e) {
   }, 1000);
 }
 
+// Генериурем корзину со списком добавленных товаров
+function openCart(e) {
+  let cartData = getCartData(); // вытаскиваем все данные корзины
+  console.log(JSON.stringify(cartData));
+  // если что-то в корзине уже есть, формируем таблицу
+  if (cartData !== null) {
+    let cardTable = "";
+    cardTable =
+      '<table class="shopping_list"><tr><th>Наименование</th><th>Цена</th><th>Кол-во</th></tr>';
+    for (let items in cartData) {
+      cardTable += "<tr>";
+      for (let i = 0; i < cartData[items].length; i++) {
+        cardTable += "<td>" + cartData[items][i] + "</td>";
+      }
+      cardTable += "</tr>";
+    }
+    cardTable += "<table>";
+    cartCont.innerHTML = cardTable;
+  } else {
+    // если в корзине пусто, то сигнализируем об этом
+    cartCont.innerHTML = "В корзине пусто!";
+  }
+}
+
 // Обработчик события на каждую кнопку "Добавить в корзину"
 for (let i = 0; i < itemBox.length; i++) {
   itemBox[i].querySelector(".add_item").addEventListener("click", addToCart);
 }
+
+// Обработчик события на кнопку Открыть корзину
+document.getElementById("checkout").addEventListener("click", openCart);
