@@ -25,6 +25,18 @@ function sum() {
   return sum;
 }
 
+function addItem(plus) {
+  if (getCartData()) {
+    let cartData = getCartData();
+    let item = plus.getAttribute("data-id");
+    cartData[item][2] = cartData[item][2] + 1;
+    console.log(cartData[item][2]);
+
+    setCartData(cartData);
+    cartCont.innerHTML = basketGenerate();
+  }
+}
+
 // Записываем данные в LocalStorage
 function setCartData(o) {
   localStorage.setItem("cart", JSON.stringify(o));
