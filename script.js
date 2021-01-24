@@ -37,6 +37,19 @@ function addItem(plus) {
   }
 }
 
+function removeItem(minus) {
+  if (getCartData()) {
+    let cartData = getCartData();
+    let item = minus.getAttribute("data-id");
+    cartData[item][2] = cartData[item][2] - 1;
+    console.log(cartData[item][2]);
+    if (cartData[item][2] <= 0) delete cartData[item];
+    setCartData(cartData);
+    //if (cartData.length == 0) clearCart();
+    cartCont.innerHTML = basketGenerate();
+  }
+}
+
 // Записываем данные в LocalStorage
 function setCartData(o) {
   localStorage.setItem("cart", JSON.stringify(o));
