@@ -67,15 +67,16 @@ function basketGenerate() {
   if (cartData !== null) {
     let cardTable = "";
     cardTable =
-      '<table class="shopping_list"><tr><th>Наименование</th><th>Цена</th><th>Кол-во</th></tr>';
+      '<table class="shopping_list"><tr><th>Наименование</th><th>Цена</th><th>Кол-во</th><th>Добавить</th><th>Убрать</th></tr>';
     for (let items in cartData) {
       cardTable += "<tr>";
       for (let i = 0; i < cartData[items].length; i++) {
         cardTable += "<td>" + cartData[items][i] + "</td>";
       }
-      cardTable += "</tr>";
+
+      cardTable += `<td><span class="plus" data-id="${items}" onclick="addItem(this)">+</span></td><td><span class="minus" data-id="${items}" onclick="removeItem(this)">-</span></td></tr>`;
     }
-    cardTable += `<tr><td>Итого</td><td>${sum()}</td><td>${count()}</td></tr>`;
+    cardTable += `<tr><td>Итого</td><td>${sum()}</td><td>${count()}</td><td></td><td></td></tr>`;
     cardTable += "<table>";
     return cardTable;
   } else {
