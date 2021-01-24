@@ -45,7 +45,8 @@ function removeItem(minus) {
     console.log(cartData[item][2]);
     if (cartData[item][2] <= 0) delete cartData[item];
     setCartData(cartData);
-    //if (cartData.length == 0) clearCart();
+    let length = Object.getOwnPropertyNames(cartData);
+    if (length == 0) clearCart();
     cartCont.innerHTML = basketGenerate();
   }
 }
